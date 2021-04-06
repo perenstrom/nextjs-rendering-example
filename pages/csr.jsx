@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import Head from "next/head";
+import { FilmList } from "../components/FilmList";
+import styles from "../styles/Home.module.css";
 
 export default function CSR() {
   const [loading, setLoading] = useState(true);
@@ -25,6 +28,25 @@ export default function CSR() {
     };
     fetchDataAsync();
   }, []);
+
+  return (
+    <div className={styles.container}>
+      <Head>
+        <title>NextJS Example – Client Side Rendering</title>
+      </Head>
+
+      <main className={styles.main}>
+        <h1 className={styles.title}>Client Side Rendering</h1>
+        <p className={styles.description}>
+          Skeleton page is generated at build time and then the static
+          HTML+CSS+JS files are served quickly to the client on each request,
+          the client then fetches data in the browser and populates the content.
+        </p>
+
+        {loading ? <pre>Loading...</pre> : <FilmList films={films} />}
+      </main>
+    </div>
+  );
 
   return (
     <div>

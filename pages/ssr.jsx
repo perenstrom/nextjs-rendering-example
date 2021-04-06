@@ -1,9 +1,25 @@
+import Head from "next/head";
+import { FilmList } from "../components/FilmList";
+import styles from "../styles/Home.module.css";
+
 export default function SSR(props) {
   const { films } = props;
 
   return (
-    <div>
-      <pre>{JSON.stringify(films, null, 2)}</pre>
+    <div className={styles.container}>
+      <Head>
+        <title>NextJS Example – Server Side Rendering</title>
+      </Head>
+
+      <main className={styles.main}>
+        <h1 className={styles.title}>Server Side Rendering</h1>
+        <p className={styles.description}>
+          Pages are generated on each request and served to the client when
+          ready.
+        </p>
+
+        <FilmList films={films} />
+      </main>
     </div>
   );
 }

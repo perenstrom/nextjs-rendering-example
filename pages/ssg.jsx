@@ -1,9 +1,25 @@
+import Head from "next/head";
+import { FilmList } from "../components/FilmList";
+import styles from "../styles/Home.module.css";
+
 export default function SSG(props) {
   const { films } = props;
 
   return (
-    <div>
-      <pre>{JSON.stringify(films, null, 2)}</pre>
+    <div className={styles.container}>
+      <Head>
+        <title>NextJS Example – Static Site Generation</title>
+      </Head>
+
+      <main className={styles.main}>
+        <h1 className={styles.title}>Static Site Generation</h1>
+        <p className={styles.description}>
+          Pages are generated at build time and then the static HTML+CSS+JS
+          files are served quickly to the client on each request.
+        </p>
+
+        <FilmList films={films} />
+      </main>
     </div>
   );
 }
